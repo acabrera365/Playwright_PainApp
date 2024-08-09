@@ -65,5 +65,13 @@ test('parametrizedMethods', async ({page})=>{
 
 })
 
+test ('testing with argos CI', async ({page})=>{
+ 
+    //create a new instance of the Navigation class
+    const navigateTo = new NavigationPage(page); //we are passing page(fixture) from our test. 
+    await navigateTo.formLayoutPage();
+    await navigateTo.datePickerPage();
+})
+
 
  
