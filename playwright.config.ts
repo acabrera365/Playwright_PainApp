@@ -30,6 +30,18 @@ require('dotenv').config(); //with this line we will be able to use .env variabl
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //reporter: 'html',
   reporter: [
+              process.env.CI ? ["dot"] : ["list"],
+              // Add Argos reporter.
+              [
+                "@argos-ci/playwright/reporter",
+                {
+                  // Upload to Argos on CI only.
+                  uploadToArgos: !!process.env.CI,
+
+                  // Set your Argos token (required if not using GitHub Actions).
+                  //token: "<YOUR-ARGOS-TOKEN>", //no need to provide gtoken
+                },
+              ],
               ['json', {outputFile: 'test-results/jsonReport.json'}],
               ['junit', {outputFile: 'test-results/jsonReport.xml'}],
               ['html']
@@ -41,6 +53,7 @@ require('dotenv').config(); //with this line we will be able to use .env variabl
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot: "only-on-failure",
     video: 'on',
     //baseURL: 'http://localhost:4200/',
 

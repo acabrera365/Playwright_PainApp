@@ -3,6 +3,9 @@ import { NavigationPage} from  '../page-objetcs/navigationPage'  //is the class 
 import { FormLayoutPage } from '../page-objetcs/formLayoutsPage';
 import { DatePickerPage } from '../page-objetcs/datePickerPage';
 
+//to use theh argos 
+import { argosScreenshot } from "@argos-ci/playwright";
+
 //using fake data generator 
 import { faker} from '@faker-js/faker'
 
@@ -70,7 +73,9 @@ test ('testing with argos CI', async ({page})=>{
     //create a new instance of the Navigation class
     const navigateTo = new NavigationPage(page); //we are passing page(fixture) from our test. 
     await navigateTo.formLayoutPage();
+    await argosScreenshot(page, "formLayoutPage");
     await navigateTo.datePickerPage();
+    await argosScreenshot(page, "datePickerPage");
 })
 
 
