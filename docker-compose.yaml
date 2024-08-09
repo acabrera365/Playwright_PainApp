@@ -1,0 +1,13 @@
+version: '3.8'
+services:                                                   # services section, 
+    playwright-test:                                        # service name, just give a name 
+         image: playwright-test                             # provide an image for the service, can give any name
+         build:                                             # we want to build that image based on the docker file
+             context: .                                     # we wat to build the image in the root directory of this project
+             dockerfile: ./Dockerfile                       #will be build based on the docker file
+         command: npm run pageObjects-chorme                #after builidng the image, we need to run command to actually run the test     
+         # after the test is executed we want to copy the report from conatiner to host, we will use volumes    
+         volumes:   
+            - ./playwright-report/:/app/playwright-report  #I want files inside container (/app/playwright-report) to be copied into  host (./playwright-report/)
+            - ./test-results/:/app/test-results            #I want files inside container (/app/test-results ) to be copied into  host (./test-results/)    -->. is for root folder where this file is in. 
+     
