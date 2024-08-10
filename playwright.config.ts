@@ -39,7 +39,7 @@ require('dotenv').config(); //with this line we will be able to use .env variabl
                   uploadToArgos: !!process.env.CI,
 
                   // Set your Argos token (required if not using GitHub Actions).
-                  token: "<ARGOS_TOKEN=d3a33d2993074e848580eda610c390897a6ee7ff>", //no need to provide gtoken
+                  token: "<d3a33d2993074e848580eda610c390897a6ee7ff>", //no need to provide gtoken
                 },
               ],
               ['json', {outputFile: 'test-results/jsonReport.json'}],
